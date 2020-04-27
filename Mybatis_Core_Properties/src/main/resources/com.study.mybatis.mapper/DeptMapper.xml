@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mybatis.mapper.DeptMapper">
+    <select id="queryAllInfo" resultType="com.study.mybatis.beans.Dept">
+        SELECT DEPTNO,DNAME,LOC FROM dept
+    </select>
+    <select id="deptFindById" resultType="com.study.mybatis.beans.Dept">
+        SELECT  DEPTNO,DNAME,LOC FROM dept WHERE DEPTNO = #{deptNo}
+   </select>
+    <insert id="saveInfo" useGeneratedKeys="true" keyProperty="deptNo" parameterType="com.study.mybatis.beans.Dept">
+        INSERT INTO dept(DNAME,LOC)VALUES(#{dName},#{loc})
+    </insert>
+</mapper>
+
