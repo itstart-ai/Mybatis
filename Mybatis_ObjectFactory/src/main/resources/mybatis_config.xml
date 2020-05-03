@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--导入外部配置文件-->
+    <properties resource="db.properties"/>
+    <!--别名设置-->
+    <typeAliases>
+        <package name="com.study.mybatis.beans"/>
+    </typeAliases>
+    <!--类型转换器-->
+    <typeHandlers>
+        <package name="com.study.mybatis.utils.MyTypeHandler"/>
+    </typeHandlers>
+    <!--自定义工厂类-->
+    <objectFactory type="com.study.mybatis.utils.MyObjectFactory"/>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--idea resources 创建报建包的方式：
+            正确方式：
+                com/study/mybatis/mapper
+            错误方式：
+                com.study.mybatis.mapper
+            就会出现下面的报错信息：
+                org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)
+        -->
+        <package name="com.study.mybatis.mapper"/>
+    </mappers>
+</configuration>
